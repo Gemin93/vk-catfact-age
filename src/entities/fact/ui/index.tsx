@@ -1,6 +1,8 @@
-import { FormItem, Button, Textarea } from "@vkontakte/vkui";
-import axios from "axios";
 import { useRef, useEffect, useState } from "react";
+import axios from "axios";
+
+import { FormItem, Button, Textarea, Image } from "@vkontakte/vkui";
+import PersikImage from "../../../assets/persik.png";
 
 export const FactPage = () => {
   const [fact, setFact] = useState<string>("");
@@ -35,10 +37,12 @@ export const FactPage = () => {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "start",
       }}
     >
+      <Image size={96} src={PersikImage} />
       <FormItem
         style={{ width: "700px" }}
         htmlFor="fact"

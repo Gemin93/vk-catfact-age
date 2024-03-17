@@ -1,22 +1,16 @@
-// import bridge from "@vkontakte/vk-bridge";
 import { useState } from "react";
-// import axios from "axios";
 import {
   View,
   SplitLayout,
   SplitCol,
   Panel,
   PanelHeader,
-  // FormItem,
-  // Input,
   usePlatform,
-  // Button,
-  // Text,
+
   Group,
   Cell,
   PanelHeaderBack,
-  // Spacing,
-  // Textarea,
+
 } from "@vkontakte/vkui";
 import { Icon24PawOutline, Icon24UserOutgoing } from "@vkontakte/icons";
 
@@ -30,33 +24,6 @@ import { AgePage } from "./entities/age/ui";
 
 export const App = () => {
   const [activePanel, setActivePanel] = useState("main");
-
-  // const query = useQuery({
-  //   queryKey: ["name"],
-  //   queryFn: () => fetchAge(),
-  // });
-
-  // const fetchAge = async () => {
-  //   const response = await fetch(`https://api.agify.io?name=${name}`);
-  //   const res = await response.json();
-  //   return res;
-  // };
-
-  // const { panel: activePanel = DEFAULT_VIEW_PANELS.HOME } =
-  //   useActiveVkuiLocation();
-  // const [fetchedUser, setUser] = useState<UserInfo | undefined>();
-  // const [popout, setPopout] = useState<ReactNode | null>(
-  //   <ScreenSpinner size="large" />
-  // );
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const user = await bridge.send("VKWebAppGetUserInfo");
-  //     setUser(user);
-  //     setPopout(null);
-  //   }
-  //   fetchData();
-  // }, []);
 
   const platform = usePlatform();
 

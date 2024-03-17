@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { FormItem, Input, Button, Text, Spacing } from "@vkontakte/vkui";
+import { FormItem, Button, Text, Spacing } from "@vkontakte/vkui";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchAge, delayQuery } from "../api";
@@ -18,8 +18,9 @@ const schema = yup.object({
 
 export const AgePage = () => {
   const [name, setName] = useState<string>("");
+  // стейт для фиксации значени input при клики на кнопку
   const [searchName, setSearchName] = useState<string>("");
-
+  // стейт для хранения значений откуда совершается запрос - клавиатура или кнопка "Узнать возраст"
   const [whereRequest, setWhereRequest] = useState<"keyboard" | "button" | "">(
     ""
   );
@@ -27,15 +28,19 @@ export const AgePage = () => {
   const queryClient = useQueryClient();
 
   const handleQueryKeyboard = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // прерывание запроса
     queryClient.cancelQueries([searchName]);
+
     setName(e.target.value);
     setWhereRequest("keyboard");
   };
 
   const handleFetchAge = (name: string) => {
+    // прерывание запроса
+    queryClient.cancelQueries([searchName]);
+    //фиксация значение input
     setSearchName(name);
     setWhereRequest("button");
-    queryClient.cancelQueries([searchName]);
   };
 
   const { data, isError, isLoading, error } = useQuery({
@@ -56,7 +61,10 @@ export const AgePage = () => {
     staleTime: Infinity,
   });
 
-  const { register } = useForm({
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
@@ -67,13 +75,14 @@ export const AgePage = () => {
 
   return (
     <FormItem htmlFor="name">
-      <Input
-        id="name"
+      <input
+        style={{ fontSize: "24px", padding: "5px", borderRadius: "5px" }}
         type="text"
-        {...(register && register("name"))}
+        id="name"
         value={name}
+        {...register("name")}
         onChange={(e) => handleQueryKeyboard(e)}
-      ></Input>
+      />
       <Spacing size={16} />
       <Text style={{ minHeight: "20px" }}>
         {isLoading ? "Вычисляем возраст..." : data}
@@ -89,6 +98,7 @@ export const AgePage = () => {
       >
         Узнать возраст
       </Button>
+      <Text>{errors.name?.message}</Text>
     </FormItem>
   );
 };

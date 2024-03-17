@@ -13,6 +13,8 @@ export const fetchAge = async (name: string, signal: AbortSignal) => {
   }
 };
 
+// отправка запроса с задержкой в 3 секунды
+
 export const delayQuery = (
   name: string,
   signal: AbortSignal
