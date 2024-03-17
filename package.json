@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Gemin93.github.io/vk-catfact-age",
+  "homepage": "https://gemin93.github.io/vk-catfact-age",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
