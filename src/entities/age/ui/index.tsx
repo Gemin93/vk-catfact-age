@@ -74,9 +74,14 @@ export const AgePage = () => {
   }
 
   return (
-    <FormItem htmlFor="name">
+    <FormItem style={{ minWidth: "240px" }} htmlFor="name">
       <input
-        style={{ fontSize: "24px", padding: "5px", borderRadius: "5px" }}
+        style={{
+          fontSize: "24px",
+          padding: "5px",
+          borderRadius: "5px",
+          width: "80%",
+        }}
         type="text"
         id="name"
         value={name}

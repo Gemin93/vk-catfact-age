@@ -44,14 +44,13 @@ export const FactPage = () => {
     >
       <Image size={96} src={PersikImage} />
       <FormItem
-        style={{ width: "700px" }}
+        style={{ minWidth: "260px", width: "100%", margin: "10px" }}
         htmlFor="fact"
-        width={200}
-        size={200}
       >
         <Textarea
+          style={{ margin: "10px" }}
           getRef={textAreaRef}
-          rows={6}
+          rows={10}
           placeholder="Котофакт"
           translate="yes"
           id="fact"
